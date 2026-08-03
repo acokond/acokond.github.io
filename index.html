@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Invitación de boda de José Marzo y Génesis">
+  <meta property="og:title" content="Boda José Marzo & Génesis">
+  <meta property="og:description" content="Nos casamos. Acompáñanos a celebrar nuestro matrimonio.">
+  <meta property="og:type" content="website">
+  <title>Boda José Marzo & Génesis</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Great+Vibes&family=Montserrat:wght@200;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f8f3eb;
+      --paper-light: #fffdf8;
+      --paper-deep: #ebe0d0;
+      --ink: #4d3929;
+      --muted: #8f7b65;
+      --gold: #b79a69;
+      --sage: #64715a;
+      --rose: #b36f62;
+      --shadow: 0 18px 45px rgba(56, 39, 25, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(183, 154, 105, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 8%, rgba(100, 113, 90, 0.14), transparent 24%),
+        linear-gradient(180deg, var(--paper) 0%, #fdfaf5 42%, var(--paper) 100%);
+      font-family: "Montserrat", Arial, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.25;
+      background-image:
+        linear-gradient(135deg, rgba(77, 57, 41, 0.05) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(77, 57, 41, 0.04) 25%, transparent 25%);
+      background-size: 28px 28px;
+    }
+
+    button, input { font: inherit; }
+
+    a { color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      background: var(--paper);
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    .loader-box { text-align: center; }
+
+    .loader-names {
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(1.9rem, 8vw, 3.1rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    .loader-line {
+      width: 68px;
+      height: 1px;
+      margin: 18px auto 0;
+      background: var(--gold);
+      animation: lineExpand 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.45; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes lineExpand {
+      0%, 100% { width: 0; opacity: 0; }
+      50% { width: 76px; opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section {
+      width: 100%;
+      padding: 70px 18px;
+    }
+
+    .inner {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 92vh;
+      padding: 32px 18px 56px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 52vmin;
+      height: 52vmin;
+      border: 1px solid rgba(183, 154, 105, 0.35);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before { top: -18vmin; left: -14vmin; }
+    .hero::after { right: -18vmin; bottom: 4vmin; }
+
+    .music-player {
+      justify-self: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(77, 57, 41, 0.55);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 253, 248, 0.42);
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .music-player:hover { transform: translateY(-2px); background: rgba(255, 253, 248, 0.8); }
+
+    .music-player span {
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid var(--ink);
+      margin-left: 3px;
+    }
+
+    .music-player.music-playing span {
+      width: 12px;
+      height: 14px;
+      border: 0;
+      border-left: 4px solid var(--ink);
+      border-right: 4px solid var(--ink);
+      margin-left: 0;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(2rem, 9vw, 3.3rem);
+      font-family: "Great Vibes", cursive;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin: 8px 0 18px;
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(3rem, 14vw, 7.6rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 0.95;
+    }
+
+    .hero-date {
+      margin: 0 auto;
+      max-width: 640px;
+      font-family: "Tenor Sans", sans-serif;
+      font-size: clamp(0.78rem, 2.8vw, 1rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.9;
+    }
+
+    .scroll-note {
+      margin: 36px 0 0;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(77, 57, 41, 0.64);
+    }
+
+    .envelope-section {
+      padding-top: 40px;
+      background:
+        linear-gradient(180deg, rgba(255, 253, 248, 0.52), rgba(235, 224, 208, 0.42)),
+        radial-gradient(circle at center top, rgba(183, 154, 105, 0.16), transparent 50%);
+    }
+
+    .envelope {
+      position: relative;
+      width: min(560px, 100%);
+      min-height: 610px;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .envelope-back {
+      position: absolute;
+      bottom: 40px;
+      width: min(520px, 94vw);
+      height: 320px;
+      background: linear-gradient(145deg, #d8c5aa, #b99f7b);
+      clip-path: polygon(0 0, 50% 48%, 100% 0, 100% 100%, 0 100%);
+      filter: drop-shadow(0 18px 28px rgba(66, 45, 30, 0.22));
+    }
+
+    .invite-card {
+      position: relative;
+      z-index: 2;
+      width: min(410px, 80vw);
+      min-height: 430px;
+      padding: 46px 28px;
+      display: grid;
+      align-content: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(255, 253, 248, 0.88), rgba(255, 253, 248, 0.92)),
+        repeating-linear-gradient(45deg, rgba(183, 154, 105, 0.07) 0 1px, transparent 1px 12px);
+      border: 1px solid rgba(183, 154, 105, 0.32);
+      box-shadow: var(--shadow);
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 3;
+      bottom: 130px;
+      left: 50%;
+      width: 88px;
+      height: 88px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fffaf1;
+      font-family: "Bodoni Moda", serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      background: radial-gradient(circle at 32% 28%, #c78674, #8f4a3e 68%);
+      box-shadow: 0 10px 22px rgba(77, 57, 41, 0.28);
+    }
+
+    .invite-card .small {
+      margin: 0 0 14px;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1.7;
+    }
+
+    .card-names {
+      margin: 0 0 14px;
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: clamp(2rem, 9vw, 3.3rem);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .date-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin: 18px 0 12px;
+    }
+
+    .date-chip {
+      min-width: 82px;
+      padding: 6px 0;
+      border-top: 1px solid rgba(77, 57, 41, 0.28);
+      border-bottom: 1px solid rgba(77, 57, 41, 0.28);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .date-number {
+      font-family: "Tenor Sans", sans-serif;
+      font-size: clamp(3rem, 13vw, 4.4rem);
+      line-height: 1;
+    }
+
+    .year {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.36em;
+    }
+
+    .events-section {
+      background: var(--paper-light);
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .arch-card {
+      min-height: 360px;
+      padding: 70px 30px 32px;
+      border-radius: 180px 180px 8px 8px;
+      text-align: center;
+      background: #fbf7ef;
+      border: 1px solid rgba(183, 154, 105, 0.24);
+      box-shadow: var(--shadow);
+    }
+
+    .arch-card:nth-child(2) { background: #efe5d8; }
+
+    .icon-line {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 18px;
+      border: 1px solid rgba(143, 123, 101, 0.45);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 1.8rem;
+    }
+
+    .script-title {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .place {
+      margin: 0 auto 8px;
+      max-width: 310px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.55;
+    }
+
+    .address {
+      margin: 0 0 18px;
+      font-size: 0.78rem;
+      color: rgba(77, 57, 41, 0.72);
+      line-height: 1.6;
+    }
+
+    .time {
+      margin: 0 0 20px;
+      font-family: "Tenor Sans", sans-serif;
+      letter-spacing: 0.14em;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 20px;
+      border: 1px solid var(--muted);
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--muted);
+      color: #fffdf8;
+    }
+
+    .timeline-section {
+      background:
+        linear-gradient(180deg, var(--paper-light), var(--paper));
+      text-align: center;
+    }
+
+    .section-title {
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(2.4rem, 10vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .timeline {
+      position: relative;
+      width: min(480px, 100%);
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(143, 123, 101, 0.32);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 36px 1fr;
+      align-items: center;
+      min-height: 58px;
+    }
+
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: var(--muted);
+      z-index: 1;
+    }
+
+    .timeline-label,
+    .timeline-hour {
+      margin: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.45;
+    }
+
+    .timeline-label { text-align: right; font-weight: 700; }
+    .timeline-hour { text-align: left; color: var(--muted); font-family: "Tenor Sans", sans-serif; }
+    .timeline-item:nth-child(even) .timeline-label { grid-column: 3; text-align: left; }
+    .timeline-item:nth-child(even) .timeline-hour { grid-column: 1; grid-row: 1; text-align: right; }
+
+    .details-section {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(179, 111, 98, 0.14), transparent 30%),
+        linear-gradient(180deg, #efe3d4, #d6c2a7);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .gift-card,
+    .dress-card,
+    .interactive-card,
+    .count-card {
+      padding: 30px 24px;
+      text-align: center;
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.9);
+      border: 1px solid rgba(255, 253, 248, 0.64);
+      box-shadow: var(--shadow);
+    }
+
+    .gift-card {
+      color: #fffdf8;
+      background:
+        linear-gradient(rgba(91, 68, 49, 0.88), rgba(91, 68, 49, 0.82)),
+        radial-gradient(circle at top, rgba(183, 154, 105, 0.6), transparent 54%);
+    }
+
+    .gift-card p,
+    .dress-card p,
+    .interactive-card p {
+      margin: 8px 0;
+      font-size: 0.78rem;
+      line-height: 1.65;
+    }
+
+    .detail-kicker {
+      margin: 20px 0 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin: 12px 0 16px;
+    }
+
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(77, 57, 41, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+    }
+
+    .note {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .interactive-section {
+      background: var(--paper-light);
+      text-align: center;
+    }
+
+    .interactive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+
+    .input {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px 14px;
+      border: 1px solid rgba(143, 123, 101, 0.28);
+      border-radius: 8px;
+      color: var(--ink);
+      background: #fffdf8;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(183, 154, 105, 0.14);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .photo-placeholder {
+      min-height: 270px;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      color: rgba(77, 57, 41, 0.7);
+      text-align: center;
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(183, 154, 105, 0.18), rgba(100, 113, 90, 0.14)),
+        repeating-linear-gradient(135deg, rgba(255, 253, 248, 0.8) 0 8px, rgba(255, 253, 248, 0.42) 8px 16px);
+      border: 1px solid rgba(183, 154, 105, 0.2);
+      box-shadow: 0 12px 30px rgba(56, 39, 25, 0.1);
+    }
+
+    .photo-placeholder strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Bodoni Moda", Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .countdown-section {
+      color: #fffdf8;
+      text-align: center;
+      background:
+        linear-gradient(rgba(76, 60, 46, 0.66), rgba(76, 60, 46, 0.68)),
+        radial-gradient(circle at 80% 20%, rgba(183, 154, 105, 0.42), transparent 30%),
+        var(--sage);
+    }
+
+    .count-card {
+      width: min(560px, 100%);
+      margin: 0 auto 42px;
+      color: var(--ink);
+      border-radius: 999px;
+    }
+
+    .count-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .timer-number {
+      display: block;
+      font-family: "Tenor Sans", sans-serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+
+    .timer-label {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .rsvp {
+      width: min(530px, 100%);
+      margin: 0 auto;
+    }
+
+    .rsvp p {
+      margin: 0 0 22px;
+      font-size: 0.86rem;
+      line-height: 1.75;
+    }
+
+    .rsvp-form {
+      display: none;
+      gap: 12px;
+      width: min(360px, 100%);
+      margin: 0 auto;
+    }
+
+    .rsvp-form.is-open {
+      display: grid;
+    }
+
+    .btn-light {
+      border-color: #fffdf8;
+      color: #fffdf8;
+    }
+
+    .btn-light:hover {
+      background: #fffdf8;
+      color: var(--muted);
+    }
+
+    .final {
+      padding: 70px 18px 46px;
+      text-align: center;
+      background: var(--paper);
+    }
+
+    .divider {
+      width: 58px;
+      height: 1px;
+      margin: 0 auto 24px;
+      background: var(--gold);
+    }
+
+    .final .wait {
+      margin: 0 0 8px;
+      font-family: "Tenor Sans", sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .signature {
+      margin: 0;
+      color: var(--muted);
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(3rem, 13vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .credits {
+      margin: 28px 0 0;
+      opacity: 0.5;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: min(360px, calc(100vw - 32px));
+      padding: 14px 16px;
+      color: #fffdf8;
+      background: rgba(77, 57, 41, 0.94);
+      border-radius: 8px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 760px) {
+      .hero { min-height: 88vh; }
+      .arch-grid,
+      .detail-grid,
+      .interactive-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-card {
+        width: min(330px, 100%);
+        margin: 0 auto;
+      }
+
+      .envelope { min-height: 540px; }
+      .invite-card { width: min(360px, 82vw); min-height: 390px; padding: 36px 18px; }
+      .envelope-back { height: 285px; bottom: 46px; }
+      .seal { bottom: 128px; width: 76px; height: 76px; }
+      .date-row { gap: 10px; }
+      .date-chip { min-width: 70px; font-size: 0.58rem; }
+      .timer-grid { gap: 4px; }
+      .count-card { border-radius: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="preloader" aria-hidden="true">
+    <div class="loader-box">
+      <div class="loader-names">José & Génesis</div>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <audio id="musica-boda" loop preload="none">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <header class="hero">
+    <button class="music-player" id="boton-musica" type="button" aria-label="Reproducir o pausar música">
+      <span aria-hidden="true"></span>
+    </button>
+
+    <div>
+      <p class="eyebrow">¡Nos casamos!</p>
+      <h1>José Marzo<br>& Génesis</h1>
+      <p class="hero-date">Sábado 21 de marzo de 2027 · Guayaquil, Ecuador</p>
+      <p class="scroll-note">Desliza para abrir la invitación</p>
+    </div>
+
+    <nav aria-label="Secciones de la invitación">
+      <a class="btn" href="#confirmacion">Confirmar asistencia</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section envelope-section">
+      <div class="envelope reveal" aria-label="Tarjeta principal de la boda">
+        <div class="envelope-back" aria-hidden="true"></div>
+        <article class="invite-card">
+          <p class="small">Hemos decidido decir sí para toda la vida</p>
+          <h2 class="card-names">José Marzo<br>& Génesis</h2>
+          <p class="small">Tenemos el honor de invitarte a celebrar nuestro matrimonio el día</p>
+          <div class="date-row" aria-label="Fecha de la boda">
+            <span class="date-chip">Sábado</span>
+            <span class="date-number">21</span>
+            <span class="date-chip">Marzo</span>
+          </div>
+          <p class="year">2027</p>
+        </article>
+        <div class="seal" aria-hidden="true">J G</div>
+      </div>
+    </section>
+
+    <section class="section events-section reveal" id="eventos">
+      <div class="inner arch-grid">
+        <article class="arch-card">
+          <div class="icon-line" aria-hidden="true">✦</div>
+          <h2 class="script-title">Ceremonia Religiosa</h2>
+          <p class="place">Iglesia por confirmar</p>
+          <p class="address">Guayaquil, Ecuador</p>
+          <p class="time">17:30 hs</p>
+          <a class="btn" href="#" aria-disabled="true">Cómo llegar</a>
+        </article>
+
+        <article class="arch-card">
+          <div class="icon-line" aria-hidden="true">♪</div>
+          <h2 class="script-title">Recepción</h2>
+          <p class="place">Salón por confirmar</p>
+          <p class="address">Guayaquil, Ecuador</p>
+          <p class="time">19:30 hs</p>
+          <a class="btn" href="#" aria-disabled="true">Cómo llegar</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section timeline-section reveal">
+      <div class="inner">
+        <h2 class="section-title">Itinerario</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="timeline-label">Ceremonia Religiosa</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">17:30 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">Recepción</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">19:30 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">Entrada de los Novios</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">20:15 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">Brindis</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">20:30 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">Cena</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">21:15 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">¡A bailar!</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">21:55 hs</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-label">Fin de la boda</p>
+            <span class="timeline-dot"></span>
+            <p class="timeline-hour">01:00 hs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section details-section reveal">
+      <div class="inner detail-grid">
+        <article class="gift-card">
+          <h2 class="script-title" style="color: #fffdf8;">Regalo</h2>
+          <p>Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con nosotros, puedes hacerlo mediante lluvia de sobres el día de la fiesta.</p>
+          <h3 class="detail-kicker">Cuenta</h3>
+          <p>Banco: por confirmar</p>
+          <p>Tipo de cuenta: por confirmar</p>
+          <p>Número de cuenta: por confirmar</p>
+          <p>Nombre: José Marzo y Génesis</p>
+        </article>
+
+        <article class="dress-card">
+          <h2 class="script-title">Dress code</h2>
+          <p class="detail-kicker">Formal</p>
+          <p><strong>Mujeres:</strong> vestido largo y tacones.</p>
+          <div class="swatches" aria-label="Paleta sugerida para mujeres">
+            <span class="swatch" style="background:#6d7448;"></span>
+            <span class="swatch" style="background:#a45d46;"></span>
+            <span class="swatch" style="background:#c8895b;"></span>
+            <span class="swatch" style="background:#7d4650;"></span>
+            <span class="swatch" style="background:#59664f;"></span>
+            <span class="swatch" style="background:#8d7359;"></span>
+          </div>
+          <p><strong>Hombres:</strong> traje formal negro, camisa blanca, corbata o corbatín.</p>
+          <div class="swatches" aria-label="Paleta sugerida para hombres">
+            <span class="swatch" style="background:#111;"></span>
+            <span class="swatch" style="background:#fff;"></span>
+          </div>
+          <p class="note">Por favor evitar blanco y beige. Agradecemos tu comprensión al no incluir niños en esta ocasión.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section interactive-section reveal">
+      <div class="inner">
+        <div class="interactive-grid">
+          <article class="interactive-card">
+            <div class="icon-line" aria-hidden="true">▣</div>
+            <h2 class="script-title">Nuestras Fotos</h2>
+            <p>Queremos ver la boda a través de tus ojos. Comparte tus momentos favoritos con nosotros.</p>
+            <a class="btn" id="photos-link" href="#" target="_blank" rel="noreferrer">Subir fotos</a>
+          </article>
+
+          <article class="interactive-card">
+            <div class="icon-line" aria-hidden="true">♫</div>
+            <h2 class="script-title">¿Qué canción no puede faltar?</h2>
+            <p>Ayúdanos a armar la playlist perfecta para celebrar juntos.</p>
+            <input class="input" id="cancion-input" type="text" placeholder="Canción y artista...">
+            <button class="btn" type="button" onclick="sugerirCancion()">Sugerir canción</button>
+          </article>
+        </div>
+
+        <h2 class="section-title">Nuestra Historia</h2>
+        <div class="gallery" aria-label="Galería de fotos">
+          <div class="photo-placeholder"><span><strong>Foto 1</strong>Reemplaza este bloque por foto1.jpg o una imagen de ustedes.</span></div>
+          <div class="photo-placeholder"><span><strong>Foto 2</strong>Reemplaza este bloque por foto2.jpg o una imagen de ustedes.</span></div>
+          <div class="photo-placeholder"><span><strong>Foto 3</strong>Reemplaza este bloque por foto3.jpg o una imagen de ustedes.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section countdown-section reveal" id="confirmacion">
+      <div class="inner">
+        <article class="count-card">
+          <h3>¡Prepárate!</h3>
+          <p class="small" style="margin:0;">Nos vemos dentro de</p>
+          <div class="timer-grid">
+            <div><span class="timer-number" id="days">00</span><div class="timer-label">Días</div></div>
+            <div><span class="timer-number" id="hours">00</span><div class="timer-label">Horas</div></div>
+            <div><span class="timer-number" id="minutes">00</span><div class="timer-label">Minutos</div></div>
+            <div><span class="timer-number" id="seconds">00</span><div class="timer-label">Segundos</div></div>
+          </div>
+        </article>
+
+        <div class="rsvp">
+          <h2 class="section-title" style="color:#fffdf8;">Confirmación de asistencia</h2>
+          <p>Para nosotros es muy importante que confirmes tu asistencia. Gracias por acompañarnos en este momento tan especial.</p>
+          <button class="btn btn-light" id="btn-principal" type="button" onclick="mostrarFormulario()">Confirmar aquí</button>
+          <form class="rsvp-form" id="form-asistencia" onsubmit="enviarAsistencia(event)">
+            <input class="input" id="nombres-asistentes" type="text" placeholder="Nombres de los asistentes..." required>
+            <button class="btn btn-light" type="submit">Enviar confirmación</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="final reveal">
+    <div class="divider"></div>
+    <p class="wait">Te esperamos</p>
+    <h2 class="signature">José Marzo & Génesis</h2>
+    <p>¡Gracias por acompañarnos!</p>
+    <p class="credits">Invitación digital lista para GitHub Pages</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const CONFIG = {
+      weddingDate: "2027-03-21T17:30:00-05:00",
+      photosUrl: "",
+      songsEndpoint: "",
+      rsvpEndpoint: ""
+    };
+
+    const toast = document.getElementById("toast");
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 4200);
+    }
+
+    window.addEventListener("load", () => {
+      window.setTimeout(() => {
+        const loader = document.getElementById("preloader");
+        loader.style.opacity = "0";
+        loader.style.visibility = "hidden";
+      }, 850);
+    });
+
+    const musica = document.getElementById("musica-boda");
+    const btnMusica = document.getElementById("boton-musica");
+
+    btnMusica.addEventListener("click", async () => {
+      if (musica.paused) {
+        try {
+          await musica.play();
+          btnMusica.classList.add("music-playing");
+        } catch {
+          showToast("Agrega un archivo musica.mp3 junto al index.html para activar la música.");
+        }
+      } else {
+        musica.pause();
+        btnMusica.classList.remove("music-playing");
+      }
+    });
+
+    const photosLink = document.getElementById("photos-link");
+    photosLink.addEventListener("click", (event) => {
+      if (!CONFIG.photosUrl) {
+        event.preventDefault();
+        showToast("Agrega el enlace de Google Drive en CONFIG.photosUrl para recibir fotos.");
+      }
+    });
+    if (CONFIG.photosUrl) photosLink.href = CONFIG.photosUrl;
+
+    async function postToEndpoint(endpoint, payload) {
+      await fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    async function sugerirCancion() {
+      const input = document.getElementById("cancion-input");
+      const cancion = input.value.trim();
+      if (!cancion) {
+        showToast("Por favor, escribe el nombre de una canción.");
+        return;
+      }
+
+      if (CONFIG.songsEndpoint) {
+        await postToEndpoint(CONFIG.songsEndpoint, { cancion });
+      } else {
+        const canciones = JSON.parse(localStorage.getItem("boda-canciones") || "[]");
+        canciones.push({ cancion, fecha: new Date().toISOString() });
+        localStorage.setItem("boda-canciones", JSON.stringify(canciones));
+      }
+
+      input.value = "";
+      showToast("¡Gracias! Tu canción fue registrada.");
+    }
+
+    function mostrarFormulario() {
+      document.getElementById("btn-principal").style.display = "none";
+      document.getElementById("form-asistencia").classList.add("is-open");
+    }
+
+    async function enviarAsistencia(event) {
+      event.preventDefault();
+      const input = document.getElementById("nombres-asistentes");
+      const nombres = input.value.trim();
+      if (!nombres) {
+        showToast("Por favor, ingresa los nombres para confirmar.");
+        return;
+      }
+
+      if (CONFIG.rsvpEndpoint) {
+        await postToEndpoint(CONFIG.rsvpEndpoint, { nombres });
+      } else {
+        const asistencias = JSON.parse(localStorage.getItem("boda-asistencias") || "[]");
+        asistencias.push({ nombres, fecha: new Date().toISOString() });
+        localStorage.setItem("boda-asistencias", JSON.stringify(asistencias));
+      }
+
+      event.target.innerHTML = "<p style='margin:0;color:#fffdf8;font-weight:700;'>¡Confirmación exitosa!</p>";
+      showToast("¡Gracias! Tu asistencia fue registrada.");
+    }
+
+    function updateCountdown() {
+      const target = new Date(CONFIG.weddingDate).getTime();
+      const distance = target - Date.now();
+      const safeDistance = Math.max(distance, 0);
+      const days = Math.floor(safeDistance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((safeDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((safeDistance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((safeDistance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const revealElements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
