@@ -575,31 +575,29 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .photo-placeholder {
-      min-height: 270px;
-      display: grid;
-      place-items: center;
-      padding: 22px;
-      color: rgba(77, 57, 41, 0.7);
-      text-align: center;
+    .story-photo {
+      margin: 0;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
       border-radius: 8px;
-      background:
-        linear-gradient(145deg, rgba(183, 154, 105, 0.18), rgba(100, 113, 90, 0.14)),
-        repeating-linear-gradient(135deg, rgba(255, 253, 248, 0.8) 0 8px, rgba(255, 253, 248, 0.42) 8px 16px);
       border: 1px solid rgba(183, 154, 105, 0.2);
       box-shadow: 0 12px 30px rgba(56, 39, 25, 0.1);
+      background: var(--paper);
     }
 
-    .photo-placeholder strong {
-      display: block;
-      margin-bottom: 8px;
-      font-family: "Bodoni Moda", Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 400;
+    .story-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .story-photo:hover img {
+      transform: scale(1.04);
     }
 
     .countdown-section {
@@ -933,9 +931,18 @@
 
         <h2 class="section-title">Nuestra Historia</h2>
         <div class="gallery" aria-label="Galería de fotos">
-          <div class="photo-placeholder"><span><strong>Foto 1</strong>Reemplaza este bloque por foto1.jpg o una imagen de ustedes.</span></div>
-          <div class="photo-placeholder"><span><strong>Foto 2</strong>Reemplaza este bloque por foto2.jpg o una imagen de ustedes.</span></div>
-          <div class="photo-placeholder"><span><strong>Foto 3</strong>Reemplaza este bloque por foto3.jpg o una imagen de ustedes.</span></div>
+          <figure class="story-photo reveal">
+            <img src="foto1.jpeg" alt="José y Génesis en un viaje con montaña nevada">
+          </figure>
+          <figure class="story-photo reveal">
+            <img src="foto2.jpeg" alt="José y Génesis en una calle histórica durante un viaje">
+          </figure>
+          <figure class="story-photo reveal">
+            <img src="foto3.jpeg" alt="José y Génesis frente a un paisaje urbano monumental">
+          </figure>
+          <figure class="story-photo reveal">
+            <img src="foto4.jpeg" alt="José y Génesis frente a una gran roca turística">
+          </figure>
         </div>
       </div>
     </section>
